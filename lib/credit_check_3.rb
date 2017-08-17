@@ -14,12 +14,13 @@
 
 
   def card_number_to_reverse_array
-      card_number_array = @card_number.reverse.split(//) #this will reverse the card number, then split it and add it to an array
+       @card_number.reverse.split(//) #this will reverse the card number, then split it and add it to an array
   end
 
 
-  def luhn_algorith (output, i)
-    if i = i.even?
+  def luhn_algorith
+    card_number_to_reverse_array.each_with_index do |number, i| #iterates through the array by index and number
+    if i.even?
       @output = @output + number.to_i
     else
     double_odd_index = number.to_i * 2
@@ -30,17 +31,16 @@
         end
       end
     end
+    end
 
     def check_card_number_valid
-    card_number_array.each_with_index do |number, i| #iterates through the array by index and number
-      i.luhn_algorith
+      luhn_algorith
       if @output % 10 == 0
         puts "The number is valid!"
       else
         puts "The number is invalid!"
       end
     end
-  end
 end
 
 
